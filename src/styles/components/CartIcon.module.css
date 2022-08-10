@@ -1,0 +1,29 @@
+.cartIcon {
+  border-radius: 1.5rem;
+  background-color: brown;
+  color: white;
+  padding: 0.75rem 2.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.cartLabel {
+  position: absolute;
+  background-color: saddlebrown;
+  padding: 0.1rem 0.35rem;
+  color: white;
+  border-radius: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  top: 5px;
+  right: 30px;
+}
