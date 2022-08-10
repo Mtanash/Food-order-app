@@ -1,0 +1,42 @@
+.hero {
+  min-height: 40vh;
+  background: url(../../images/hero.jpg) rgba(0, 0, 0, 0.5);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  background-color: #333;
+  bottom: -106px;
+  transform: skewY(-5deg);
+}
+
+.heroCard {
+  background-color: #333;
+  color: white;
+  width: 60%;
+  max-width: 600px;
+  padding: 1.25rem;
+  position: absolute;
+  z-index: 1;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heroCard h2,
+.heroCard p {
+  text-align: center;
+}
+
+.heroCard p {
+  margin: 1.5rem 0;
+}
