@@ -1,0 +1,38 @@
+.cartModalTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+
+.title,
+.price {
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.buttons button {
+  border: 1px solid saddlebrown;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.closeButton {
+  color: saddlebrown;
+}
+.orderButton {
+  color: white;
+  background-color: saddlebrown;
+}
