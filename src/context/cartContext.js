@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const cartDefaultState = {
   cartItems: [],
@@ -12,7 +12,23 @@ const cartDefaultState = {
 export const CartContext = React.createContext(cartDefaultState);
 
 const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const saveCartItemsToLocalStorage = (items) => {
+    localStorage.setItem("cartItems", JSON.stringify(items));
+  };
+
+  const loadCartItemsFromLocalStorage = () => {
+    if (localStorage.getItem("cartItems")) {
+      return JSON.parse(localStorage.getItem("cartItems"));
+    } else {
+      return [];
+    }
+  };
+
+  const [cartItems, setCartItems] = useState(loadCartItemsFromLocalStorage());
+
+  useEffect(() => {
+    saveCartItemsToLocalStorage(cartItems);
+  }, [cartItems]);
 
   const addItemToCart = (item) => {
     // if item is already in the cart

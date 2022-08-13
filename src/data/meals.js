@@ -33,6 +33,22 @@ const meals = [
     picture: "/images/TurkeyShepherd’sPie.jpg",
     price: 28.66,
   },
+  {
+    id: uuidv4(),
+    name: "Ground Turkey Vegetable Soup",
+    description:
+      "Low-sodium ingredients don’t diminish the full flavor of this brothy ground turkey vegetable soup. The turkey lends a heartiness that everyone will welcome on a cold blustery evening. —Bonnie LeBarron, Forestville, New York",
+    picture: "/images/Ground Turkey Vegetable Soup.jpg",
+    price: 32.15,
+  },
+  {
+    id: uuidv4(),
+    name: "Steak and Shrimp Kabobs",
+    description:
+      "These steak and shrimp kabobs make any get-together special. Cubes of marinated steak are skewered with shrimp and veggies, then grilled. For picnics, I assemble the kabobs at home and carry them in a large container. —Karen Mergener, St. Croix, Minnesota",
+    picture: "/images/Steak and Shrimp Kabobs.jpg",
+    price: 44,
+  },
 ];
 
 export default meals;
