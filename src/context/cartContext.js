@@ -6,6 +6,7 @@ const cartDefaultState = {
   increaseItemCount: (itemId) => {},
   decreaseItemCount: (itemId) => {},
   removeItemFromCart: (itemId) => {},
+  resetCartItems: () => {},
 };
 
 export const CartContext = React.createContext(cartDefaultState);
@@ -60,6 +61,10 @@ const CartProvider = ({ children }) => {
     setCartItems(newItems);
   };
 
+  const resetCartItems = () => {
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -68,6 +73,7 @@ const CartProvider = ({ children }) => {
         increaseItemCount,
         decreaseItemCount,
         removeItemFromCart,
+        resetCartItems,
       }}
     >
       {children}

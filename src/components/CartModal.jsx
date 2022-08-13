@@ -3,9 +3,10 @@ import { CartContext } from "../context/cartContext";
 import CartItem from "./CartItem";
 import styles from "../styles/components/CartModal.module.css";
 import { ModalContext } from "../context/modalContext";
+import Modal from "./Modal";
 
-function CartModal() {
-  const { cartItems } = useContext(CartContext);
+function CartModal({ notifyOrderRegistered }) {
+  const { cartItems, resetCartItems } = useContext(CartContext);
   const { closeModal } = useContext(ModalContext);
 
   const cartItemsTotalPrices = cartItems.reduce(
@@ -13,8 +14,14 @@ function CartModal() {
     0
   );
 
+  const handleOrderButtonClick = () => {
+    notifyOrderRegistered();
+    resetCartItems();
+    closeModal();
+  };
+
   return (
-    <>
+    <Modal>
       {cartItems.map((item) => (
         <CartItem key={item.data.id} {...item} />
       ))}
@@ -26,9 +33,11 @@ function CartModal() {
         <button className={styles.closeButton} onClick={closeModal}>
           close
         </button>
-        <button className={styles.orderButton}>order</button>
+        <button className={styles.orderButton} onClick={handleOrderButtonClick}>
+          order
+        </button>
       </div>
-    </>
+    </Modal>
   );
 }
 
