@@ -31,6 +31,21 @@ function Meal({ id, name, description, picture, price }) {
     }
   };
 
+  const handleMealAmountButtonClick = (amount) => {
+    if (amount === -1) {
+      if (mealAmount < 2) {
+        setMealAmount(1);
+      } else {
+        setMealAmount((prev) => prev - 1);
+      }
+    } else if (amount === 1) {
+      setMealAmount((prev) => prev + 1);
+    } else {
+      console.log("Please provide amount = -1 or 1");
+      return;
+    }
+  };
+
   const handleAddMealToCart = () => {
     const item = {
       data: {
@@ -58,7 +73,7 @@ function Meal({ id, name, description, picture, price }) {
           <label htmlFor="number" defaultValue="1">
             Amount
           </label>
-          <button>
+          <button onClick={() => handleMealAmountButtonClick(-1)}>
             <BsFileArrowDownFill />
           </button>
           <input
@@ -67,7 +82,7 @@ function Meal({ id, name, description, picture, price }) {
             value={mealAmount}
             onChange={handleMealAmountChange}
           />
-          <button>
+          <button onClick={() => handleMealAmountButtonClick(1)}>
             <BsFileArrowUpFill />
           </button>
         </div>
