@@ -2,6 +2,7 @@ import styles from "../styles/components/Meal.module.css";
 import Card from "../ui/Card";
 import IconButton from "../ui/IconButton";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BsFileArrowUpFill, BsFileArrowDownFill } from "react-icons/bs";
 import truncateString from "../helpers/truncateString";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/cartContext";
@@ -23,7 +24,11 @@ function Meal({ id, name, description, picture, price }) {
   const { addItemToCart } = useContext(CartContext);
 
   const handleMealAmountChange = (e) => {
-    setMealAmount(e.target.value);
+    if (+e.target.value < 1) {
+      setMealAmount(1);
+    } else {
+      setMealAmount(+e.target.value);
+    }
   };
 
   const handleAddMealToCart = () => {
@@ -53,12 +58,18 @@ function Meal({ id, name, description, picture, price }) {
           <label htmlFor="number" defaultValue="1">
             Amount
           </label>
+          <button>
+            <BsFileArrowDownFill />
+          </button>
           <input
             type="number"
             id="number"
             value={mealAmount}
             onChange={handleMealAmountChange}
           />
+          <button>
+            <BsFileArrowUpFill />
+          </button>
         </div>
         <IconButton
           Icon={AiOutlinePlus}
