@@ -30,6 +30,7 @@ input[type="number"] {
 button {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: transform ease-in-out 200ms;
+  cursor: pointer;
 }
 
 button:hover {
