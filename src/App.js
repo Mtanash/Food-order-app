@@ -6,22 +6,11 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Meals from "./components/Meals";
 import { ModalContext } from "./context/modalContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { modalIsOpen } = useContext(ModalContext);
-
-  const notifyOrderRegistered = () =>
-    toast.success("Order saved, Thank you!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
 
   return (
     <main>
@@ -39,11 +28,7 @@ function App() {
       <Header />
       <Hero />
       <Meals />
-      {modalIsOpen &&
-        createPortal(
-          <CartModal notifyOrderRegistered={notifyOrderRegistered} />,
-          document.body
-        )}
+      {modalIsOpen && createPortal(<CartModal />, document.body)}
     </main>
   );
 }
