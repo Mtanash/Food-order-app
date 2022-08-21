@@ -6,19 +6,9 @@ import { BsFileArrowUpFill, BsFileArrowDownFill } from "react-icons/bs";
 import truncateString from "../helpers/truncateString";
 import { useContext, useState } from "react";
 import { CartContext } from "../context/cartContext";
-import { toast } from "react-toastify";
+import toastNotify from "../helpers/toast";
 
-function Meal({ id, name, description, picture, price }) {
-  const notifyMealAddedToCart = () =>
-    toast.success("Meal added to cart!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
+function Meal({ _id, name, description, picture, price }) {
   const [mealAmount, setMealAmount] = useState(1);
 
   const { addItemToCart } = useContext(CartContext);
@@ -49,7 +39,7 @@ function Meal({ id, name, description, picture, price }) {
   const handleAddMealToCart = () => {
     const item = {
       data: {
-        id,
+        id: _id,
         name,
         description,
         price,
@@ -59,7 +49,7 @@ function Meal({ id, name, description, picture, price }) {
     };
 
     addItemToCart(item);
-    notifyMealAddedToCart();
+    toastNotify("Meal added to cart!");
   };
 
   return (
