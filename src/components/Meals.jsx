@@ -24,6 +24,7 @@ function Meals() {
           setError(null);
         }
       } catch (error) {
+        if (error.message === "canceled") return;
         console.error(error);
         setError(error);
       }
