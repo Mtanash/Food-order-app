@@ -13,7 +13,7 @@
 }
 
 .inputOuterContainer {
-  height: 58px;
+  height: 44px;
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
@@ -22,24 +22,27 @@
 .inputContainer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .inputContainer label {
   flex: 0.28;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .inputContainer input {
-  flex: 0.72;
+  flex: 0.5;
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 0.2rem;
-  padding: 0.5rem;
-  font-size: 1.2rem;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+  width: 165px;
 }
 
 .errorMessage {
   color: red;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
 }
 
@@ -67,4 +70,30 @@
 .submitButton {
   background-color: saddlebrown;
   color: white;
+}
+
+@media (min-width: 400px) {
+  .inputContainer input {
+    width: auto;
+  }
+}
+
+@media (min-width: 576px) {
+  .inputOuterContainer {
+    height: 58px;
+  }
+
+  .inputContainer label {
+    font-size: 1.1rem;
+  }
+
+  .inputContainer input {
+    flex: 0.72;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .errorMessage {
+    font-size: 0.9rem;
+  }
 }
