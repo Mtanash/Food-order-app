@@ -1,15 +1,15 @@
-import { useContext, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import CartItem from "./CartItem";
 import styles from "../styles/components/CartModal.module.css";
-import { ModalContext } from "../context/modalContext";
 import Modal from "./Modal";
 import Checkout from "./Checkout";
 import { selectCartItems } from "../slices/cartSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { closeModal } from "../slices/modalSlice";
 
 function CartModal() {
   const [checkingOut, setCheckingOut] = useState(false);
-  const { closeModal } = useContext(ModalContext);
+  const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
   const cartItemsTotalPrices = cartItems.reduce(
@@ -18,13 +18,14 @@ function CartModal() {
   );
 
   const handleOrderButtonClick = () => {
-    // notifyOrderRegistered();
-    // resetCartItems();
-    // closeModal();
     setCheckingOut(true);
   };
 
   const closeCheckingOut = useCallback(() => setCheckingOut(false), []);
+
+  const onCloseButtonClick = () => {
+    dispatch(closeModal());
+  };
 
   return (
     <Modal>
@@ -40,7 +41,7 @@ function CartModal() {
             <p className={styles.price}>${cartItemsTotalPrices.toFixed(2)}</p>
           </div>
           <div className={styles.buttons}>
-            <button className={styles.closeButton} onClick={closeModal}>
+            <button className={styles.closeButton} onClick={onCloseButtonClick}>
               close
             </button>
             <button

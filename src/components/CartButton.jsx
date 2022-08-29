@@ -1,12 +1,13 @@
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { IoCart } from "react-icons/io5";
-import { ModalContext } from "../context/modalContext";
 import { selectCartItems } from "../slices/cartSlice";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "../styles/components/CartButton.module.css";
+import { openModal } from "../slices/modalSlice";
 
 function CartButton() {
-  const { openModal } = useContext(ModalContext);
+  const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
   const cartButtonRef = useRef();
@@ -24,10 +25,14 @@ function CartButton() {
 
   const cartItemsCount = cartItems.reduce((prev, cur) => prev + cur.amount, 0);
 
+  const onCartButtonClick = () => {
+    dispatch(openModal());
+  };
+
   return (
     <button
       className={styles.cartButton}
-      onClick={openModal}
+      onClick={onCartButtonClick}
       ref={cartButtonRef}
     >
       <IoCart className={styles.icon} />

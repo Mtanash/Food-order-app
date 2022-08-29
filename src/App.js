@@ -1,18 +1,17 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import CartModal from "./components/CartModal";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Meals from "./components/Meals";
-import { ModalContext } from "./context/modalContext";
 import { ToastContainer } from "react-toastify";
 import { selectCartItems } from "./slices/cartSlice";
 import { useSelector } from "react-redux";
-
+import { selectModalIsOpen } from "./slices/modalSlice";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const { modalIsOpen } = useContext(ModalContext);
+  const modalIsOpen = useSelector(selectModalIsOpen);
   const cartItems = useSelector(selectCartItems);
 
   useEffect(() => {

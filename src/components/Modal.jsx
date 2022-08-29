@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import { ModalContext } from "../context/modalContext";
 import styles from "../styles/components/Modal.module.css";
 import Card from "../ui/Card";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../slices/modalSlice";
 
 function Modal({ children }) {
-  const { closeModal } = useContext(ModalContext);
+  const dispatch = useDispatch();
 
   const handleCloseModal = (e) => {
     if (e.target.id === "overlay") {
-      closeModal();
+      dispatch(closeModal());
     }
   };
 
