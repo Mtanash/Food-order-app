@@ -4,14 +4,18 @@ import "./index.css";
 import App from "./App";
 import ModalProvider from "./context/modalContext";
 import CartProvider from "./context/cartContext";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CartProvider>
-      <ModalProvider>
-        <App />
-      </ModalProvider>
-    </CartProvider>
+    <Provider store={store}>
+      <CartProvider>
+        <ModalProvider>
+          <App />
+        </ModalProvider>
+      </CartProvider>
+    </Provider>
   </React.StrictMode>
 );
