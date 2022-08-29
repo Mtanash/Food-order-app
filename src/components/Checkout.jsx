@@ -1,20 +1,23 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useContext } from "react";
-import { CartContext } from "../context/cartContext";
 import axiosInstance from "../api/axios";
 import styles from "../styles/components/Checkout.module.css";
 import { ModalContext } from "../context/modalContext";
 import toastNotify from "../helpers/toast";
+import { useSelector } from "react-redux";
+import { resetCartItems, selectCartItems } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 function Checkout({ closeCheckingOut }) {
-  const { cartItems, resetCartItems } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   const { closeModal } = useContext(ModalContext);
 
   const submitOrder = async (orderData) => {
     try {
       const response = await axiosInstance.post("/orders", orderData);
       console.log(response.data);
-      resetCartItems();
+      dispatch(resetCartItems());
       toastNotify("Order submitted successfully. Thanks!");
     } catch (error) {
       console.error(error);
