@@ -2,23 +2,18 @@ import styles from "../styles/components/CartItem.module.css";
 import truncateString from "../helpers/truncateString";
 import { BsPlusLg } from "react-icons/bs";
 import { AiOutlineMinus } from "react-icons/ai";
-import { useContext } from "react";
-import { CartContext } from "../context/cartContext";
+import { useDispatch } from "react-redux";
+import { decreaseItemCount, increaseItemCount } from "../slices/cartSlice";
 
 function CartItem({ data: { id, name, description, picture, price }, amount }) {
-  const { increaseItemCount, decreaseItemCount, removeItemFromCart } =
-    useContext(CartContext);
+  const dispatch = useDispatch();
 
   const handleIncreaseMealCount = () => {
-    increaseItemCount(id);
+    dispatch(increaseItemCount(id));
   };
 
   const handleDecreaseMealCount = () => {
-    if (amount < 2) {
-      removeItemFromCart(id);
-    } else {
-      decreaseItemCount(id);
-    }
+    dispatch(decreaseItemCount(id));
   };
 
   return (

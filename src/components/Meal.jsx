@@ -4,15 +4,16 @@ import IconButton from "../ui/IconButton";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsFileArrowUpFill, BsFileArrowDownFill } from "react-icons/bs";
 import truncateString from "../helpers/truncateString";
-import { useContext, useState } from "react";
-import { CartContext } from "../context/cartContext";
+import { useState } from "react";
 import toastNotify from "../helpers/toast";
 import { useSpring, animated } from "react-spring";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../slices/cartSlice";
 
 function Meal({ _id, name, description, picture, price }) {
   const [mealAmount, setMealAmount] = useState(1);
 
-  const { addItemToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const props = useSpring({
     to: { opacity: 1 },
@@ -55,7 +56,7 @@ function Meal({ _id, name, description, picture, price }) {
       amount: +mealAmount,
     };
 
-    addItemToCart(item);
+    dispatch(addItemToCart(item));
     toastNotify("Meal added to cart!");
   };
 

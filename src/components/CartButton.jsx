@@ -1,12 +1,13 @@
 import { useContext, useEffect, useRef } from "react";
 import { IoCart } from "react-icons/io5";
-import { CartContext } from "../context/cartContext";
 import { ModalContext } from "../context/modalContext";
+import { selectCartItems } from "../slices/cartSlice";
+import { useSelector } from "react-redux";
 import styles from "../styles/components/CartButton.module.css";
 
 function CartButton() {
   const { openModal } = useContext(ModalContext);
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
 
   const cartButtonRef = useRef();
 

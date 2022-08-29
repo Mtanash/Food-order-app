@@ -1,15 +1,16 @@
 import { useContext, useState, useCallback } from "react";
-import { CartContext } from "../context/cartContext";
 import CartItem from "./CartItem";
 import styles from "../styles/components/CartModal.module.css";
 import { ModalContext } from "../context/modalContext";
 import Modal from "./Modal";
 import Checkout from "./Checkout";
+import { selectCartItems } from "../slices/cartSlice";
+import { useSelector } from "react-redux";
 
 function CartModal() {
   const [checkingOut, setCheckingOut] = useState(false);
-  const { cartItems } = useContext(CartContext);
   const { closeModal } = useContext(ModalContext);
+  const cartItems = useSelector(selectCartItems);
 
   const cartItemsTotalPrices = cartItems.reduce(
     (prev, cur) => prev + cur.amount * +cur.data.price,
