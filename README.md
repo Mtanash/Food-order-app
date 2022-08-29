@@ -2,6 +2,8 @@
 
 A website for ordering meals
 
+<img src="./src/food-app-screenshot.png" />
+
 ## Features
 
 - Responsive on all devices
