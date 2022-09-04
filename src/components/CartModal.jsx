@@ -6,6 +6,7 @@ import Checkout from "./Checkout";
 import { selectCartItems } from "../slices/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../slices/modalSlice";
+import toastNotify from "../helpers/toast";
 
 function CartModal() {
   const [checkingOut, setCheckingOut] = useState(false);
@@ -18,6 +19,10 @@ function CartModal() {
   );
 
   const handleOrderButtonClick = () => {
+    if (cartItems.length < 1) {
+      toastNotify("Cart is empty!");
+      return;
+    }
     setCheckingOut(true);
   };
 
