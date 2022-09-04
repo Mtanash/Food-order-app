@@ -50,32 +50,3 @@
   justify-content: space-around;
   padding: 0.75rem;
 }
-
-.mealAmount {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.mealAmount > button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  width: 28px;
-  height: 28px;
-  font-size: 1.8rem;
-}
-
-.meal label {
-  font-weight: bold;
-}
-
-.meal input {
-  width: 40px;
-  border: 1px solid lightslategray;
-  border-radius: 0.1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0.25rem;
-  text-align: center;
-}
