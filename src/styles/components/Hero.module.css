@@ -30,6 +30,10 @@
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
+  animation-name: slideIn;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1200ms;
+  animation-iteration-count: 1;
 }
 
 .heroCard h2,
@@ -39,6 +43,18 @@
 
 .heroCard p {
   margin: 1.5rem 0;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media (min-width: 576px) {
