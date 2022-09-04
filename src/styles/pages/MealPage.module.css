@@ -1,6 +1,10 @@
 .mealPage {
   margin-top: 96px;
   padding-top: 2rem;
+  min-height: calc(100vh - 96px);
+}
+
+.mealPage .wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;

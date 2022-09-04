@@ -6,4 +6,6 @@
   gap: 1.25rem;
   color: white;
   margin-bottom: 2rem;
+  position: relative;
+  min-height: 100vh;
 }

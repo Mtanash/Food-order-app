@@ -7,6 +7,7 @@ import MealAmountInput from "../ui/MealAmountInput";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../slices/cartSlice";
 import toastNotify from "../helpers/toast";
+import Loading from "../ui/Loading";
 
 function MealPage() {
   const { mealId } = useParams();
@@ -36,13 +37,13 @@ function MealPage() {
   let content;
 
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = <Loading />;
   } else if (error) {
     content = <p>Error: {error.data.message}</p>;
   } else {
     const { name, picture, description, price } = meal;
     content = (
-      <>
+      <div className={styles.wrapper}>
         <div>
           <img className={styles.mealPicture} src={picture} alt={name} />
         </div>
@@ -63,7 +64,7 @@ function MealPage() {
             </button>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 
