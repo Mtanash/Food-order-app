@@ -7,18 +7,29 @@ import toastNotify from "../helpers/toast";
 import { useSelector } from "react-redux";
 import { resetCartItems, selectCartItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
+import { useRegisterOrderMutation } from "../slices/apiSlice";
 
 function Checkout({ closeCheckingOut }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const { closeModal } = useContext(ModalContext);
+  const [registerOrder, result] = useRegisterOrderMutation();
 
   const submitOrder = async (orderData) => {
+    // try {
+    //   const response = await axiosInstance.post("/orders", orderData);
+    //   console.log(response.data);
+    //   dispatch(resetCartItems());
+    //   toastNotify("Order submitted successfully. Thanks!");
+    // } catch (error) {
+    //   console.error(error);
+    // }
     try {
-      const response = await axiosInstance.post("/orders", orderData);
-      console.log(response.data);
+      await registerOrder(orderData).unwrap();
+
       dispatch(resetCartItems());
       toastNotify("Order submitted successfully. Thanks!");
+      closeModal();
     } catch (error) {
       console.error(error);
     }
@@ -47,7 +58,6 @@ function Checkout({ closeCheckingOut }) {
         });
         const order = { items: items, data: values };
         await submitOrder(order);
-        closeModal();
       }}
     >
       {({ isSubmitting }) => (
@@ -112,9 +122,9 @@ function Checkout({ closeCheckingOut }) {
             <button
               className={styles.submitButton}
               type="submit"
-              disabled={isSubmitting}
+              disabled={result.isLoading}
             >
-              Submit
+              {result.isLoading ? "Please wait..." : "Submit"}
             </button>
           </div>
         </Form>
