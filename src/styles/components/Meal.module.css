@@ -3,6 +3,11 @@
   background-color: white;
   color: black;
   width: 300px;
+  transition: transform ease-in-out 400ms;
+}
+
+.meal:hover {
+  transform: scale(1.1);
 }
 
 .meal img {
