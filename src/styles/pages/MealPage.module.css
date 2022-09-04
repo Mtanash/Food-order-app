@@ -1,0 +1,86 @@
+.mealPage {
+  margin-top: 96px;
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.mealPicture {
+  border-radius: 2rem;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgb(0 0 0 / 50%);
+}
+
+.mealName {
+  color: white;
+  font-size: 2rem;
+}
+
+.mealDescription {
+  color: #ccc;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  line-height: 25px;
+  margin: 1.5rem 0;
+}
+
+.mealPrice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: relative;
+  width: fit-content;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.mealPrice::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 115%;
+  height: 115%;
+  background-color: brown;
+  z-index: -1;
+  border-radius: 1rem;
+}
+
+.mealAddSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mealAmountInput {
+  margin: 2rem 0;
+}
+
+.mealAmountInput label,
+.mealAmountInput button {
+  color: white;
+}
+
+.mealAmountInput input,
+.mealAmountInput button {
+  height: 40px;
+}
+
+.mealAmountInput button {
+  width: 40px;
+  font-size: 2.5rem;
+}
+
+.addButton {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  font-weight: bold;
+  height: 40px;
+  font-size: 1.4rem;
+}
