@@ -12,7 +12,18 @@ export const mealApi = createApi({
     getMealById: builder.query({
       query: (id) => `meals/${id}`,
     }),
+    registerOrder: builder.mutation({
+      query: (order) => ({
+        url: `/orders`,
+        method: "POST",
+        body: order,
+      }),
+    }),
   }),
 });
 
-export const { useGetMealByIdQuery, useGetMealsQuery } = mealApi;
+export const {
+  useGetMealByIdQuery,
+  useGetMealsQuery,
+  useRegisterOrderMutation,
+} = mealApi;
