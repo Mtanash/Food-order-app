@@ -44,7 +44,7 @@ function Meal({ _id: id, name, description, picture, price }) {
       <Card className={styles.meal}>
         <Link to={`/meals/${id}`}>
           <img src={picture} alt={name} />
-          <h3 className={styles.mealName}>{name}</h3>
+          <h3 className={styles.mealName}>{truncateString(name, 25)}</h3>
         </Link>
         <p className={styles.mealDescription}>{truncateString(description)}</p>
         <p className={styles.mealPrice}>${price.toFixed(2)}</p>
