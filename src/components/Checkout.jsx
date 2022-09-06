@@ -1,35 +1,24 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useContext } from "react";
-import axiosInstance from "../api/axios";
-import styles from "../styles/components/Checkout.module.css";
-import { ModalContext } from "../context/modalContext";
 import toastNotify from "../helpers/toast";
 import { useSelector } from "react-redux";
 import { resetCartItems, selectCartItems } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { useRegisterOrderMutation } from "../slices/apiSlice";
+import { closeModal } from "../slices/modalSlice";
+import styles from "../styles/components/Checkout.module.css";
 
 function Checkout({ closeCheckingOut }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
-  const { closeModal } = useContext(ModalContext);
   const [registerOrder, result] = useRegisterOrderMutation();
 
   const submitOrder = async (orderData) => {
-    // try {
-    //   const response = await axiosInstance.post("/orders", orderData);
-    //   console.log(response.data);
-    //   dispatch(resetCartItems());
-    //   toastNotify("Order submitted successfully. Thanks!");
-    // } catch (error) {
-    //   console.error(error);
-    // }
     try {
       await registerOrder(orderData).unwrap();
 
       dispatch(resetCartItems());
       toastNotify("Order submitted successfully. Thanks!");
-      closeModal();
+      dispatch(closeModal());
     } catch (error) {
       console.error(error);
     }
